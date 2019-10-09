@@ -9,7 +9,9 @@ node('') {
 		archive 'target/*.jar'
 	}
 	stage('Static Code Analysis'){
-		bat 'mvn clean verify sonar:sonar -Dsonar.projectName=exemple-sonar -Dsonar.projectKey=exemple-sonar -Dsonar.projectVersion=$BUILD_NUMBER';
+		withMaven(maven:'mm'){
+			bat 'mvn clean verify sonar:sonar -Dsonar.projectName=exemple-sonar -Dsonar.projectKey=exemple-sonar -Dsonar.projectVersion=$BUILD_NUMBER';
+		}
 	}
 	stage ('Integration Test'){
 		withMaven(maven:'mm'){
