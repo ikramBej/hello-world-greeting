@@ -3,7 +3,8 @@ node('') {
 		checkout scm
 	}
 	stage('Build & Unit test'){
-		bat 'mvn clean verify -DskipITs=true';
+		withMaven(maven:'mm'){
+			bat 'mvn clean verify -DskipITs=true';}
 		junit '**/target/surefire-reports/TEST-*.xml'
 		archive 'target/*.jar'
 	}
@@ -11,7 +12,8 @@ node('') {
 		bat 'mvn clean verify sonar:sonar -Dsonar.projectName=exemple-sonar -Dsonar.projectKey=exemple-sonar -Dsonar.projectVersion=$BUILD_NUMBER';
 	}
 	stage ('Integration Test'){
-		bat 'mvn clean verify -Dsurefire.skip=true';
+		withMaven(maven:'mm'){
+			bat 'mvn clean verify -Dsurefire.skip=true';}
 		junit '**/target/failsafe-reports/TEST-*.xml'
 		archive 'target/*.jar'
 	}
