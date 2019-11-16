@@ -1,6 +1,7 @@
 pipeline {
 	
-    agent {
+  
+	agent {
         label "master"
     }
  
