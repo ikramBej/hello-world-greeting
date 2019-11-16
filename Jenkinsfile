@@ -46,18 +46,7 @@ pipeline {
      
         
         
-           
-         stage("mvn deploy") {
-            steps {
-                script {
-                    // If you are using Windows then you should use "bat" step
-                    // Since unit testing is out of the scope we skip them
-			withMaven(maven:'mm'){
-				bat "D:\\apache-maven-3.6.2\\bin\\mvn deploy"}
-                }
-            }
-        }
-     
+    
         
         
        
