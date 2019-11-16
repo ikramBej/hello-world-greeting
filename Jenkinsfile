@@ -8,8 +8,6 @@ node('') {
 		junit '**/target/surefire-reports/TEST-*.xml'
 		archive 'target/*.jar'
 	}
-	
-	}
 	stage ('Integration Test'){
 		withMaven(maven:'mm'){
 			bat 'mvn clean verify -Dsurefire.skip=true';}
