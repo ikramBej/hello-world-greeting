@@ -2,25 +2,12 @@ pipeline {
     agent {
         label "master"
     }
-   
-    environment {
-        // This can be nexus3 or nexus2
-        NEXUS_VERSION = "nexus3"
-        // This can be http or https
-        NEXUS_PROTOCOL = "http"
-        // Where your Nexus is running
-        NEXUS_URL = "1localhost:8081"
-        // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "Releases"
-        // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "admin:admin123"
-    }
     stages {
         stage("clone code") {
             steps {
                 script {
                     // Let's clone the source
-                    git 'https://github.com/amineBoujnah/CICD.git';
+                    git 'https://github.com/ikramBej/hello-world-greeting';
                 }
             }
         }
@@ -64,13 +51,7 @@ pipeline {
                 }
             }
         }
-        stage("mail") {
-          steps {
-          mail bcc: '', body: '''Hello User the build of your project successed.
-            Jenkins.''', cc: '', from: '', replyTo: '', subject: 'Build succed', to: 'boujnahamine1@gmail.com'
-          }
         
-        }
         
         
        
